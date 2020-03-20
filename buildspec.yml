@@ -9,8 +9,6 @@ phases:
       - cd ~
       - curl -sS https://getcomposer.org/installer | php
       - mv composer.phar /usr/local/bin/composer
-      - ln -s /usr/local/bin/composer /usr/bin/composer
-      - composer install
       - php composer.phar install
   build:
     commands:
