@@ -7,10 +7,10 @@ phases:
   pre_build:
     commands:
       - cd ~
-      - sudo curl -sS https://getcomposer.org/installer | sudo php
-      - sudo mv composer.phar /usr/local/bin/composer
-      - sudo ln -s /usr/local/bin/composer /usr/bin/composer
-      - sudo composer install
+      - curl -sS https://getcomposer.org/installer | php
+      - mv composer.phar /usr/local/bin/composer
+      - ln -s /usr/local/bin/composer /usr/bin/composer
+      - composer install
       - php composer.phar install
   build:
     commands:
