@@ -1,0 +1,3 @@
+# wirvshackathon-backend
+
+![build badge](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoibS9ib0tIVDdoem9aUnQ3YTJWS0s0VTJuRjQ0SklCSGZoamk1YWpSUXdOc2xlZTBJS0FaaXRGTCtrdU85c0hBemcwM3R5cmJIeHZTWHczd0lvcjRMQkZFPSIsIml2UGFyYW1ldGVyU3BlYyI6InU1V0FscE9INHVzakROQWoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
