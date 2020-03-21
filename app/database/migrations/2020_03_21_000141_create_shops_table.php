@@ -18,8 +18,15 @@ class CreateShopsTable extends Migration
 
             $table->decimal('longitude', '10', '4');
             $table->decimal('latitude', '10', '4');
-            $table->string('brand');
+            $table->string('streetName')->nullable();
+            $table->string('houseNumber')->nullable();
+            $table->string('city')->nullable();
+            $table->integer('postCode')->nullable();
+            $table->string('extraAddressInformation')->nullable();
+
+            $table->string('brand')->nullable();
             $table->string('name');
+            $table->string('type');
 
             $table->timestamps();
         });

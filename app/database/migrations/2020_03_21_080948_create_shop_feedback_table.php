@@ -13,16 +13,16 @@ class CreateShopFeedbackTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_feedback', function (Blueprint $table) {
+        Schema::create('shop_feedbacks', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->uuid('supplier_id')->nullable();
+            $table->uuid('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->uuid('shop_id')->nullable();
+            $table->uuid('shop_id');
             $table->foreign('shop_id')->references('id')->on('shops');
 
-            $table->string('amountOfCustomers');
-            $table->string('productAvailability');
+            $table->string('amountOfCustomers')->default('medium');
+            $table->string('productAvailability')->default('medium');
 
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateShopFeedbackTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_feedback');
+        Schema::dropIfExists('shop_feedbacks');
     }
 }

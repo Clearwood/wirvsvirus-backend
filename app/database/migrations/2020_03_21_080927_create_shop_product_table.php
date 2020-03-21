@@ -16,12 +16,12 @@ class CreateShopProductTable extends Migration
         Schema::create('shop_product', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->uuid('shop_id')->nullable();
+            $table->uuid('shop_id');
             $table->foreign('shop_id')->references('id')->on('shops');
-            $table->uuid('product_id')->nullable();
+            $table->uuid('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             
-            $table->boolean('isAvailable');
+            $table->boolean('isAvailable')->default(true);
 
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ class CreateShopProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_x_product');
+        Schema::dropIfExists('shop_product');
     }
 }
