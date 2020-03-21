@@ -20,6 +20,7 @@ class ProductUpdateRequest extends BaseRequest
             'quantityUnit' => 'string',
             'priceRangeMin' => 'integer',
             'priceRangeMax' => 'integer',
+            'needsCooling' => 'boolean',
         ];
     }
 }

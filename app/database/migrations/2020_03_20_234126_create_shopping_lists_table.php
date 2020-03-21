@@ -22,6 +22,8 @@ class CreateShoppingListTable extends Migration
             $table->boolean('preferCheapProducts')->default(true);
 //            $table->integer('budget')->nullable()->comment('In euro-cent');
             $table->string('shopType')->nullable();
+            $table->boolean('hasCooledProduct')->default(false);
+            $table->integer('shoppingBagsAmount')->nullable();
 
             $table->timestamps();
         });

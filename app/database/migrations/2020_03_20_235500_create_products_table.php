@@ -22,6 +22,7 @@ class CreateProductTable extends Migration
             $table->string('shopType');
             $table->integer('priceRangeMin')->nullable();
             $table->integer('priceRangeMax')->nullable();
+            $table->boolean('needsCooling')->default(false);
 
             $table->timestamps();
         });

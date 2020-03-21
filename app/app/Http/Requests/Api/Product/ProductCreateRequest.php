@@ -21,6 +21,7 @@ class ProductCreateRequest extends BaseRequest
             'quantityUnit' => 'required|string',
             'priceRangeMin' => 'required|integer',
             'priceRangeMax' => 'required|integer',
+            'needsCooling' => 'boolean',
         ];
     }
 }

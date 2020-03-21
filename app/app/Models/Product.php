@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property        string      quantityUnit
  * @property        string      priceRangeMin
  * @property        string      priceRangeMax
+ * @property        boolean     needsCooling
  *
  * @property-read   ShoppingItem[]  shoppingItems
  * @property-read   Shop[]          shops
@@ -42,6 +43,7 @@ class Product extends Model
         'quantityUnit',
         'priceRangeMin',
         'priceRangeMax',
+        'needsCooling'
     ];
 
     public function shoppingItems(): HasMany

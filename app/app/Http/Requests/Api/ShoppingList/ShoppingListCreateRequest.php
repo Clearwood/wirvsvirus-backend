@@ -18,6 +18,7 @@ class ShoppingListCreateRequest extends BaseRequest
             'consumer_id' => 'required|exists:' . Consumer::class . ',id',
             'preferCheapProducts' => 'boolean',
             'shopType' => 'required|string',
+            'shoppingBagsAmount' => 'required|integer',
         ];
     }
 }

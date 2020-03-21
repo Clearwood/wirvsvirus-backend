@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property        string      consumer_id
  * @property        bool        preferCheapProducts
  * @property        string      shopType
+ * @property        boolean     hasCooledProduct
+ * @property        int         shoppingBagsAmount
  *
  * @property-read   ShoppingItem[]  shoppingItems
  *
@@ -30,6 +32,7 @@ class ShoppingList extends Model
     protected $fillable = [
         'consumer_id',
         'shopType',
+        'shoppingBagsAmount',
     ];
 
     public function consumer()

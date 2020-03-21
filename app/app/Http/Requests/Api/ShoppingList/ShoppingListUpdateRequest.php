@@ -17,6 +17,7 @@ class ShoppingListUpdateRequest extends BaseRequest
         return [
             'preferCheapProducts' => 'boolean',
             'shopType' => 'string',
+            'shoppingBagsAmount' => 'integer'
         ];
     }
 }

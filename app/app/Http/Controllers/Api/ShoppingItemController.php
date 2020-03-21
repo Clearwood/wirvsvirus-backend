@@ -33,7 +33,17 @@ class ShoppingItemController extends Controller
     {
         $shoppingItem = ShoppingItem::create($request->all());
         $shoppingItem->save();
+        $shoppingItem->refresh();
 
+        $shoppingItem->shoppingList->hasCooledProduct = false;
+        foreach ($shoppingItem->shoppingList->shoppingItems as $shoppingItem) {
+            if ($shoppingItem->product->needsCooling) {
+                $shoppingItem->shoppingList->hasCooledProduct = true;
+                break;
+            }
+        }
+
+        $shoppingItem->save();
         return (new ShoppingItemResource($shoppingItem->refresh()))->response()->setStatusCode(201);
     }
 
@@ -61,7 +71,17 @@ class ShoppingItemController extends Controller
     {
         $shoppingItem->fill($request->all());
         $shoppingItem->save();
+        $shoppingItem->refresh();
 
+        $shoppingItem->shoppingList->hasCooledProduct = false;
+        foreach ($shoppingItem->shoppingList->shoppingItems as $shoppingItem) {
+            if ($shoppingItem->product->needsCooling) {
+                $shoppingItem->shoppingList->hasCooledProduct = true;
+                break;
+            }
+        }
+
+        $shoppingItem->save();
         return new ShoppingItemResource($shoppingItem->refresh());
     }
 
