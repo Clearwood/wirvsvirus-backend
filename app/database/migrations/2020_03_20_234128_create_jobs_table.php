@@ -21,7 +21,7 @@ class CreateJobsTable extends Migration
             $table->uuid('consumer_id');
             $table->foreign('consumer_id')->references('id')->on('consumers');
             $table->uuid('shoppingList_id');
-            $table->foreign('shoppingList_id')->references('id')->on('shoppingLists');
+            $table->foreign('shoppingList_id')->references('id')->on('shopping_lists');
             $table->uuid('shop_id')->nullable();
             $table->foreign('shop_id')->references('id')->on('shops');
 
