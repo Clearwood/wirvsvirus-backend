@@ -12,7 +12,8 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - cd app
+      - pwd
+      - ls -all
       - php composer.phar install
   post_build:
     commands:
