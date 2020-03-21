@@ -23,4 +23,21 @@ class DistanceController
         return new JsonResponse($response['json'], $response['status'], $response['header']);
     }
 
+    public function reverseGeo(Request $request)
+    {
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+        $dist = new DistanceService();
+        $response = $dist->reverseGeo($lat,$lng);
+        return new JsonResponse($response['json'], $response['status'], $response['header']);
+    }
+
+    public function Address2Geo(Request $request)
+    {
+        $address = $request->input('address');
+        $dist = new DistanceService();
+        $response = $dist->Address2Geo($address);
+        return new JsonResponse($response['json'], $response['status'], $response['header']);
+    }
+
 }
