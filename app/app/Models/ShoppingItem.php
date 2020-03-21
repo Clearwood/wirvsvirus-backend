@@ -19,10 +19,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read   Carbon          updated_at
  *
  * @package App\Models
+ * @method static self create(array $all)
  */
 class ShoppingItem extends Model
 {
     use UsesUuid;
+
+    protected $fillable = [
+        'shoppingList_id',
+        'product_id',
+        'quantity',
+    ];
 
     public function shoppingList()
     {

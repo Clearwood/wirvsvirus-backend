@@ -20,7 +20,7 @@ class CreateShoppingListTable extends Migration
             $table->foreign('consumer_id')->references('id')->on('consumers');
 
             $table->boolean('preferCheapProducts')->default(true);
-            $table->integer('budget')->nullable()->comment('In euro-cent');
+//            $table->integer('budget')->nullable()->comment('In euro-cent');
             $table->string('shopType')->nullable();
 
             $table->timestamps();

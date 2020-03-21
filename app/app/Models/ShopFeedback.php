@@ -25,6 +25,13 @@ class ShopFeedback extends Model
 {
     use UsesUuid;
 
+    protected $fillable = [
+        'shop_id',
+        'supplier_id',
+        'amountOfCustomers',
+        'productAvailability',
+    ];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);

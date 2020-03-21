@@ -25,10 +25,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read   Carbon      updated_at
  *
  * @package App\Models
+ * @method static self create(array $all)
  */
 class Supplier extends Model
 {
     use UsesUuid;
+
+    protected $fillable = [
+        'user_id',
+        'hasCar',
+        'hasBike',
+        'hasCooler',
+    ];
 
     public function user(): BelongsTo
     {

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property        Consumer    consumer
  * @property        string      consumer_id
  * @property        bool        preferCheapProducts
+ * @property        string      shopType
  *
  * @property-read   ShoppingItem[]  shoppingItems
  *
@@ -25,6 +26,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ShoppingList extends Model
 {
     use UsesUuid;
+
+    protected $fillable = [
+        'consumer_id',
+        'shopType',
+    ];
 
     public function consumer()
     {

@@ -35,6 +35,15 @@ class Product extends Model
         'tags' => 'array',
     ];
 
+    protected $fillable = [
+        'name',
+        'tags',
+        'shopType',
+        'quantityUnit',
+        'priceRangeMin',
+        'priceRangeMax',
+    ];
+
     public function shoppingItems(): HasMany
     {
         return $this->hasMany(ShoppingItem::class);

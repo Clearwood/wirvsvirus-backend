@@ -35,6 +35,19 @@ class Shop extends Model
 {
     use UsesUuid;
 
+    protected $fillable = [
+        'latitude',
+        'longitude',
+        'streetName',
+        'houseNumber',
+        'city',
+        'postCode',
+        'extraAddressInformation',
+        'brand',
+        'name',
+        'type',
+    ];
+
     public function jobs(): HasMany
     {
         return $this->hasMany(Job::class);

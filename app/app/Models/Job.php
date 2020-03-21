@@ -32,6 +32,18 @@ class Job extends Model
 {
     use UsesUuid;
 
+    protected $fillable = [
+        'status',
+        'supplier_id',
+        'consumer_id',
+        'shop_id',
+        'receipt',
+        'paymentToShop',
+        'paymentToSupplier',
+        'deliveryTime',
+        'acceptedJobTime',
+    ];
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
