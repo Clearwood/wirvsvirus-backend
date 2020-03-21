@@ -25,6 +25,8 @@ use Illuminate\Notifications\Notifiable;
  * @property        string  healthStatus
  * @property        bool    isRiskGroup
  * @property        string  password
+ * @property        float   latitude
+ * @property        float   longitude
  *
  * @property-read   Consumer    consumer
  * @property-read   Supplier    supplier
