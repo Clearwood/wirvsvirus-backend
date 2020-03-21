@@ -68,10 +68,6 @@ Route::prefix('products')->name('products.')->group(function () {
 
 Route::prefix('shops')->name('shops.')->group(function () {
     Route::get('', [ShopController::class, 'index'])->name('index');
-    Route::post('', [ShopController::class, 'create'])->name('create');
-
-    Route::get('{shop}', [ShopController::class, 'read'])->name('read');
-    Route::put('{shop}', [ShopController::class, 'update'])->name('update');
     Route::delete('{shop}', [ShopController::class, 'delete'])->name('delete');
 });
 
