@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ShoppingItem extends Model
 {
+    use UsesUuid;
 
     public function shoppingList()
     {

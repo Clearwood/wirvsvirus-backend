@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class ShoppingList extends Model
 {
+    use UsesUuid;
 
     public function consumer()
     {

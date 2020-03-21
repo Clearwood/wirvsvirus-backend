@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property        Shop        shop
  * @property        string      shop_id
  * @property        string      receipt
- * @property        int         paymentForShop
- * @property        int         paymentForSupplier
+ * @property        int         paymentToShop
+ * @property        int         paymentToSupplier
  * @property        Carbon      deliveryTime
  * @property        Carbon      acceptedJobTime
  *
@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Job extends Model
 {
+    use UsesUuid;
 
     public function supplier()
     {

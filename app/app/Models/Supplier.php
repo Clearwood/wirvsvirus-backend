@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Supplier extends Model
 {
+    use UsesUuid;
 
     public function user(): BelongsTo
     {

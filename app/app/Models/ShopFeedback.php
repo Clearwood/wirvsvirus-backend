@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ShopFeedback extends Model
 {
+    use UsesUuid;
 
     public function shop()
     {

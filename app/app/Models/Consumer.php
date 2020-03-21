@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Consumer extends Model
 {
+    use UsesUuid;
 
     public function user(): BelongsTo
     {

@@ -27,8 +27,8 @@ class CreateJobsTable extends Migration
 
             $table->string('status')->default('pending');
             $table->string('receipt')->nullable()->comment('url of the image of the receipt');
-            $table->integer('paymentForShop')->nullable()->comment('The amount paid to the shop by the supplier');
-            $table->integer('paymentForSupplier')->nullable()->comment('The amount given to the supplier by the consumer');
+            $table->integer('paymentToShop')->nullable()->comment('The amount paid to the shop by the supplier');
+            $table->integer('paymentToSupplier')->nullable()->comment('The amount given to the supplier by the consumer');
             $table->dateTime('deliveryTime')->nullable()->comment('Scheduled time for the delivery');
             $table->dateTime('acceptedJobTime')->nullable();
 

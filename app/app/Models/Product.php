@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Product extends Model
 {
+    use UsesUuid;
+
     protected $casts = [
         'tags' => 'array',
     ];

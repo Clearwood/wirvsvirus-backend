@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Shop extends Model
 {
+    use UsesUuid;
 
     public function jobs(): HasMany
     {
