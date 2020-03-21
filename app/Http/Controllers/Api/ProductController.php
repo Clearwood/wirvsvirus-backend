@@ -15,10 +15,15 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('name')) {
+            return ProductResource::collection(Product::where('name', 'like', "%{$request->input('name')}%")->get());
+        }
         return ProductResource::collection(Product::all());
     }
 

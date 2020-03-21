@@ -16,8 +16,8 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->decimal('longitude', '10', '4');
-            $table->decimal('latitude', '10', '4');
+            $table->decimal('longitude', '12', '8');
+            $table->decimal('latitude', '12', '8');
             $table->string('streetName')->nullable();
             $table->string('houseNumber')->nullable();
             $table->string('city')->nullable();

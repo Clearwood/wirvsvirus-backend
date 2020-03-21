@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingItemTable extends Migration
+class CreateShoppingItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateShoppingItemTable extends Migration
             $table->uuid('shoppingList_id');
             $table->foreign('shoppingList_id')->references('id')->on('shopping_lists');
             $table->uuid('product_id');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('product_id')->references('id')->on('products');
 
             $table->decimal('quantity', '10', '3')->default(0.0);
 
