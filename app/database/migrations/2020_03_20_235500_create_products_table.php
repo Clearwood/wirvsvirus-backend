@@ -18,6 +18,10 @@ class CreateProductTable extends Migration
 
             $table->string('name');
             $table->json('tags')->default([]);
+            $table->string('quantityUnit');
+            $table->string('shopType');
+            $table->integer('priceRangeMin')->nullable();
+            $table->integer('priceRangeMax')->nullable();
 
             $table->timestamps();
         });

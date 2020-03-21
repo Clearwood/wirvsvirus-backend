@@ -3,7 +3,6 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,11 +21,13 @@ use Illuminate\Notifications\Notifiable;
  * @property        string  extraAddressInformation
  * @property        string  healthStatus
  * @property        bool    isRiskGroup
+ * @property        string  password
  *
  * @property-read   Carbon  created_at
  * @property-read   Carbon  updated_at
  *
  * @package App
+ * @method static self create(array $all)
  */
 class User extends Authenticatable
 {
@@ -38,7 +39,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstName',
+        'lastName',
+        'email',
+        'birthday',
+        'streetName',
+        'houseNumber',
+        'city',
+        'postCode',
+        'extraAddressInformation',
+        'healthStatus',
+        'isRiskGroup'
+        //'password',
     ];
 
     /**

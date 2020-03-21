@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read   string      id
  * @property        string      name
  * @property        array       tags
+ * @property        string      shopType
+ * @property        string      quantityUnit
+ * @property        string      priceRangeMin
+ * @property        string      priceRangeMax
  *
  * @property-read   ShoppingItem[]  shoppingItems
  * @property-read   Shop[]          shops
@@ -21,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read   Carbon      updated_at
  *
  * @package App\Models
+ * @method static self create($all)
  */
 class Product extends Model
 {

@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read   Carbon      updated_at
  *
  * @package App\Models
+ * @method static self create(array $all)
  */
 class Job extends Model
 {

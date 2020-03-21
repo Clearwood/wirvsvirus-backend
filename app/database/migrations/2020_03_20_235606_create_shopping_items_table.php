@@ -22,7 +22,6 @@ class CreateShoppingItemTable extends Migration
             $table->foreign('product_id')->references('id')->on('product');
 
             $table->decimal('quantity', '10', '3')->default(0.0);
-            $table->string('quantityUnit')->default('pieces');
 
             $table->timestamps();
         });

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read   Carbon      updated_at
  *
  * @package App\Models
+ * @method static self create(array $all)
  */
 class ShoppingList extends Model
 {
