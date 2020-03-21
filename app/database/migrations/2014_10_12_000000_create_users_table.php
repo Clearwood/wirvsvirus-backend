@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('extraAddressInformation')->nullable();
 
             $table->string('healthStatus')->default('quarantine');
-            $table->boolean('riskGroup')->default(false);
+            $table->boolean('isRiskGroup')->default(false);
             $table->string('phoneNumber');
 
             $table->string('email')->unique();
