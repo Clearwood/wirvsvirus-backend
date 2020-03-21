@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ShopResource;
 use App\Models\Shop;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
