@@ -6,14 +6,13 @@ phases:
       php: 7.3
   pre_build:
     commands:
-      - cd ~
       - curl -sS https://getcomposer.org/installer | php
       - mv composer.phar /usr/local/bin/composer
   build:
     commands:
       - echo Build started on `date`
       - pwd
-      - ls -all
+      - cd app
       - php composer.phar install
   post_build:
     commands:
