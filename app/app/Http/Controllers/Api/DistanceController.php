@@ -16,9 +16,11 @@ class DistanceController
 
     public function dist(Request $request)
     {
-        $value = $request->input('lala');
+        $start = $request->input('start');
+        $end = $request->input('end');
         $dist = new DistanceService();
-        return new JsonResponse([]);
+        $response = $dist->dist($start,$end);
+        return new JsonResponse($response['json'], $response['status'], $response['header']);
     }
 
 }
