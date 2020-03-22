@@ -83,6 +83,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['birthday'];
+
     public function consumer(): HasOne
     {
         return $this->hasOne(Consumer::class);

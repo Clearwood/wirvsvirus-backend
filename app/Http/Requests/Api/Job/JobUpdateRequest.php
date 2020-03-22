@@ -23,6 +23,7 @@ class JobUpdateRequest extends BaseRequest
             'receipt' => 'nullable|url',
             'paymentToShop' => 'nullable|integer',
             'paymentToSupplier' => 'nullable|integer',
+            'acceptedJobTime' => 'nullable|datetime',
         ];
     }
 }
