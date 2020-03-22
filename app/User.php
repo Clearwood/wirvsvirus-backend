@@ -83,6 +83,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['birthday'];
+
     public function consumer(): HasOne
     {
         return $this->hasOne(Consumer::class);
@@ -93,11 +95,17 @@ class User extends Authenticatable
         return $this->hasOne(Supplier::class);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function getLatLong()
     {
         if ($this->isDirty(['streetName', 'houseNumber', 'city', 'postcode']) || $this->wasRecentlyCreated) {
             $ds = new DistanceService();
             $res = $ds->address2Geo($this->getAddress());
+            if ($res['json']['status'] !== 'OK') {
+                throw new \Exception('Error with GMaps. Response: ' . json_encode($res['json']));
+            }
             $this->latitude = $res['json']['results'][0]['geometry']['location']['lat'];
             $this->longitude = $res['json']['results'][0]['geometry']['location']['lng'];
         }

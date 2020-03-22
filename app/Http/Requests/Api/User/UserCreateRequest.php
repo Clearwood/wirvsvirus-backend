@@ -17,7 +17,7 @@ class UserCreateRequest extends BaseRequest
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|email',
-            'birthday' => 'required|date',
+            'birthday' => 'required|datetime',
             'streetName' => 'required|string',
             'houseNumber' => 'required|string',
             'city' => 'required|string',

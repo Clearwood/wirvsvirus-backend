@@ -17,7 +17,7 @@ class UserUpdateRequest extends BaseRequest
             'firstName' => 'string',
             'lastName' => 'string',
             'email' => 'email',
-            'birthday' => 'date',
+            'birthday' => 'datetime',
             'streetName' => 'string',
             'houseNumber' => 'string',
             'city' => 'string',
