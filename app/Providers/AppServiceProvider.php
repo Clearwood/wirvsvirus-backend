@@ -2,20 +2,13 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\BaseResource;
+use App\Http\Resources\ConsumerResource;
+use App\Http\Resources\ProductResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
     /**
      * Register any application services.
      *
@@ -24,5 +17,15 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        BaseResource::withoutWrapping();
     }
 }
