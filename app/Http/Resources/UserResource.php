@@ -30,6 +30,7 @@ class UserResource extends BaseResource
             'postCode' => $this->postCode,
             'extraAddressInformation' => $this->extraAddressInformation,
             'healthStatus' => $this->healthStatus,
+            'phoneNumber' => $this->phoneNumber,
             'isRiskGroup' => $this->isRiskGroup,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
