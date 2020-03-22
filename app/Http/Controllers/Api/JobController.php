@@ -10,6 +10,7 @@ use App\Http\Resources\JobResource;
 use App\Models\Consumer;
 use App\Models\Job;
 use App\Models\ShoppingList;
+use App\Models\Supplier;
 use App\services\JobSorter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,12 @@ class JobController extends Controller
             $js = new JobSorter();
             $sorted = $js->sortJobs($request->get('supplier_id'), Job::where('supplier_id', null)->get(), $request->get('latitude'), $request->get('longitude'));
             return JobDistanceResource::collection($sorted);
+        } else if ($request->has('consumer_id')) {
+            $jobs = Job::where('consumer_id', $request->get('consumer_id'))->get();
+            return JobResource::collection($jobs);
+        } else if ($request->has('supplier_id')) {
+            $jobs = Job::where('supplier_id', $request->get('supplier_id'))->get();
+            return JobResource::collection($jobs);
         }
         return JobResource::collection(Job::all());
     }

@@ -16,10 +16,16 @@ class ShoppingItemController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('shoppingList_id')) {
+            $shoppingItems = ShoppingItem::where('shoppingList_id', $request->get('shoppingList_id'))->get();
+            return ShoppingItemResource::collection($shoppingItems);
+        }
         return ShoppingItemResource::collection(ShoppingItem::all());
     }
 
