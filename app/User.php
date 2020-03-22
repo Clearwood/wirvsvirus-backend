@@ -95,7 +95,7 @@ class User extends Authenticatable
 
     public function getLatLong()
     {
-        if ($this->wasChanged(['streetName', 'houseNumber', 'city', 'postcode']) || $this->wasRecentlyCreated) {
+        if ($this->isDirty(['streetName', 'houseNumber', 'city', 'postcode']) || $this->wasRecentlyCreated) {
             $ds = new DistanceService();
             $res = $ds->address2Geo($this->getAddress());
             $this->latitude = $res['json']['results'][0]['geometry']['location']['lat'];
@@ -106,5 +106,13 @@ class User extends Authenticatable
     public function getAddress()
     {
         return "{$this->streetName} {$this->houseNumber}, {$this->postCode} {$this->city}, Germany";
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::saving(function (User $user) {
+            $user->getLatLong();
+        });
     }
 }
