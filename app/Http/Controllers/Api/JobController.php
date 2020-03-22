@@ -7,10 +7,8 @@ use App\Http\Requests\Api\Job\JobCreateRequest;
 use App\Http\Requests\Api\Job\JobUpdateRequest;
 use App\Http\Resources\JobDistanceResource;
 use App\Http\Resources\JobResource;
-use App\Models\Consumer;
 use App\Models\Job;
 use App\Models\ShoppingList;
-use App\Models\Supplier;
 use App\services\JobSorter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,14 +26,22 @@ class JobController extends Controller
     {
         if ($request->has('latitude') && $request->has('longitude')) {
             $js = new JobSorter();
-            $sorted = $js->sortJobs($request->get('supplier_id'), Job::where('supplier_id', null)->get(), $request->get('latitude'), $request->get('longitude'));
+            $sorted = $js->sortJobs($request->get('supplier_id'), Job::where([
+                ['status', '=', 'pending'],
+                ['shoppingList.shoppingBagsAmount', '<=', $request->get('shoppingBagsAmount') ?? 100],
+                ['shoppingList.hasCooledProduct', '<=', $request->get('hasCooledProduct') ?? 1],
+            ])->get(), $request->get('latitude'), $request->get('longitude'), $request->get('searchRadius'));
             return JobDistanceResource::collection($sorted);
-        } else if ($request->has('consumer_id')) {
-            $jobs = Job::where('consumer_id', $request->get('consumer_id'))->get();
-            return JobResource::collection($jobs);
-        } else if ($request->has('supplier_id')) {
-            $jobs = Job::where('supplier_id', $request->get('supplier_id'))->get();
-            return JobResource::collection($jobs);
+        } else {
+            if ($request->has('consumer_id')) {
+                $jobs = Job::where('consumer_id', $request->get('consumer_id'))->get();
+                return JobResource::collection($jobs);
+            } else {
+                if ($request->has('supplier_id')) {
+                    $jobs = Job::where('supplier_id', $request->get('supplier_id'))->get();
+                    return JobResource::collection($jobs);
+                }
+            }
         }
         return JobResource::collection(Job::all());
     }

@@ -39,9 +39,9 @@ class JobSorter
         return $closeJobs;
     }
 
-    public function sortJobs(?Supplier $supplier, $jobs, float $lat, float $lon)
+    public function sortJobs(?Supplier $supplier, $jobs, float $lat, float $lon, float $searchRadius)
     {
-        $closeJobs = $this->presortJobs($jobs, $lat, $lon, self::SEARCH_RADIUS_KILOMETERS);
+        $closeJobs = $this->presortJobs($jobs, $lat, $lon, $searchRadius ?? self::SEARCH_RADIUS_KILOMETERS);
         if (empty($closeJobs)) {
             return [];
         }
