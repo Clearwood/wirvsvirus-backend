@@ -19,6 +19,7 @@ class ShoppingListResource extends BaseResource
         return [
             'id' => $this->id,
             'consumer_id' => $this->consumer_id,
+            'shoppingBagsAmount' => $this->shoppingBagsAmount,
             'preferCheapProducts' => $this->preferCheapProducts,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,

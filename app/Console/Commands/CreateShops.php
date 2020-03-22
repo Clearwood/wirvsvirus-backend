@@ -12,7 +12,7 @@ class CreateShops extends Command
      *
      * @var string
      */
-    protected $signature = 'create-shops';
+    protected $signature = 'create:shops';
 
     /**
      * The console command description.

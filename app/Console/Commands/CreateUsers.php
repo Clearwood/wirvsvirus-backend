@@ -20,7 +20,7 @@ class CreateUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'create-user {city=Berlin} {-n|--number=1}';
+    protected $signature = 'create:user {--city=Berlin} {--N|number=1}';
     /**
      * The console command description.
      *
@@ -46,18 +46,24 @@ class CreateUsers extends Command
     public function handle()
     {
         $ds = new DistanceService();
-        for ($i = 0; $i < $this->argument('number'); $i++) {
+        $osm = json_decode(file_get_contents(__DIR__ . '/../../../storage/osm_streets_berlin.json'), true);
+        for ($i = 0; $i < $this->option('number'); $i++) {
             $user = new User();
-            if ($this->argument('city') === 'Berlin') {
+            if ($this->option('city') === 'Berlin') {
     //            $resp = json_decode(self::ADDRESS2GEO_BERLIN, true);
-                $osm = json_decode(file_get_contents(__DIR__ . '/../../../storage/osm_streets_berlin.json'), true);
-                $street = $osm['elements'][mt_rand(0, sizeof($osm['elements']))];
+                $successful = false;
+                while (!$successful) {
+                    $street = $osm['elements'][mt_rand(0, sizeof($osm['elements']))];
+                    if (array_key_exists('name', $street['tags']) && array_key_exists('postal_code', $street['tags'])) {
+                        $successful = true;
+                    }
+                }
                 $user->streetName = $street['tags']['name'];
                 $user->postCode = $street['tags']['postal_code'];
                 $user->houseNumber = mt_rand(1, 5);
                 $user->city = 'Berlin';
             } else {
-                $resp = $ds->address2Geo($this->argument('city') . ', Germany');
+                $resp = $ds->address2Geo($this->option('city') . ', Germany');
 
                 if ($resp['json']['status'] === 'OK') {
                     $bounds = $resp['json']['results'][0]['geometry']['bounds'];
@@ -66,7 +72,7 @@ class CreateUsers extends Command
                     $addr = $ds->reverseGeo($lat, $lon);
                     dd($addr);
                 } else {
-                    $this->error("City \"{$this->argument('city')}\" not found.");
+                    $this->error("City \"{$this->option('city')}\" not found.");
                 }
             }
             $generator = new Generator();
@@ -80,8 +86,8 @@ class CreateUsers extends Command
             $user->isRiskGroup = mt_rand(0,1);
             $user->healthStatus = ['healthy', 'quarantine', 'sick'][mt_rand(0,2)];
             $user->save();
+            $this->line("New User: {$user->firstName} {$user->lastName} | {$user->getAddress()}");
         }
-        $this->output->success("New User: {$user->firstName} {$user->lastName} | {$user->getAddress()}");
     }
 
     private function random_latlon($min, $max): float

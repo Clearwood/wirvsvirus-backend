@@ -17,12 +17,12 @@ class JobUpdateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'status' => 'in:pending,inProgress,done',
-            'supplier_id' => 'exists:' . Supplier::class . ',id',
-            'shop_id' => 'exists:' . Shop::class . ',id',
-            'receipt' => 'url',
-            'paymentToShop' => 'integer',
-            'paymentToSupplier' => 'integer',
+            'status' => 'in:pending,inProgress,done,cancelled',
+            'supplier_id' => 'nullable|exists:' . Supplier::class . ',id',
+            'shop_id' => 'nullable|exists:' . Shop::class . ',id',
+            'receipt' => 'nullable|url',
+            'paymentToShop' => 'nullable|integer',
+            'paymentToSupplier' => 'nullable|integer',
         ];
     }
 }

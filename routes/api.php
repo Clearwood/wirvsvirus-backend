@@ -51,6 +51,7 @@ Route::prefix('jobs')->name('jobs.')->group(function () {
     Route::get('{job}', [JobController::class, 'read'])->name('read');
     Route::put('{job}', [JobController::class, 'update'])->name('update');
     Route::delete('{job}', [JobController::class, 'delete'])->name('delete');
+    Route::get('{job}/status', [JobController::class, 'status'])->name('status');
 });
 
 Route::prefix('products')->name('products.')->group(function () {

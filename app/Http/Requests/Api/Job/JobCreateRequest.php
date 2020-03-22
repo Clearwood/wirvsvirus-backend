@@ -16,8 +16,7 @@ class JobCreateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'status' => 'in:pending,inProgress,done',
-            'consumer_id' => 'required|exists:' . Consumer::class . ',id',
+            'status' => 'in:pending,inProgress,done,cancelled',
             'shoppingList_id' => 'required|exists:' . ShoppingList::class . ',id',
         ];
     }

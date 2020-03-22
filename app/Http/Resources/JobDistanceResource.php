@@ -21,6 +21,7 @@ class JobDistanceResource extends BaseResource
             'id' => $this->id,
             'supplier_id' => $this->supplier_id,
             'consumer_id' => $this->consumer_id,
+            'shoppingList_id' => $this->shoppingList_id,
             'shop_id' => $this->shop_id,
             'receipt' => $this->receipt,
             'paymentToShop' => $this->paymentToShop,

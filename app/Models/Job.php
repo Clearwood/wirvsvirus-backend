@@ -47,6 +47,8 @@ class Job extends Model
         'acceptedJobTime',
     ];
 
+    protected $dates = ['acceptedJobTime'];
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);

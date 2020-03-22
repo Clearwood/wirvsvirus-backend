@@ -7,7 +7,9 @@ use App\Http\Requests\Api\Job\JobCreateRequest;
 use App\Http\Requests\Api\Job\JobUpdateRequest;
 use App\Http\Resources\JobDistanceResource;
 use App\Http\Resources\JobResource;
+use App\Models\Consumer;
 use App\Models\Job;
+use App\Models\ShoppingList;
 use App\services\JobSorter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -40,10 +42,17 @@ class JobController extends Controller
      */
     public function create(JobCreateRequest $request)
     {
-        $job = Job::create($request->all());
+        $job = new Job();
+        $job->shoppingList()->associate(ShoppingList::find($request->get('shoppingList_id')));
+        $job->consumer()->associate($job->shoppingList->consumer_id);
         $job->save();
 
         return (new JobResource($job->refresh()))->response()->setStatusCode(201);
+    }
+
+    public function status(Job $job)
+    {
+        return new JsonResponse(['status' => $job->status]);
     }
 
     /**

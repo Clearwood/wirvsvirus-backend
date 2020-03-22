@@ -15,10 +15,16 @@ class SupplierController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('user_id')) {
+            $consumers = Supplier::where('user_id', $request->get('user_id'))->get();
+            return SupplierResource::collection($consumers);
+        }
         return SupplierResource::collection(Supplier::all());
     }
 
