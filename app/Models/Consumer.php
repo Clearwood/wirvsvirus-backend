@@ -44,6 +44,6 @@ class Consumer extends Model
 
     public function shoppingLists(): HasMany
     {
-        return $this->hasMany(ShoppingList::class);
+        return $this->hasMany(ShoppingList::class, 'shoppingList_id');
     }
 }

@@ -55,7 +55,7 @@ class Shop extends Model
 
     public function shopFeedbacks(): HasMany
     {
-        return $this->hasMany(ShopFeedback::class);
+        return $this->hasMany(ShopFeedback::class, 'shopFeedback_id');
     }
 
     public function product(): BelongsToMany

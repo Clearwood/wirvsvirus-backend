@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ShoppingList\ConsumerCreateRequest;
+use App\Http\Requests\Api\ShoppingList\ShoppingListCreateRequest;
 use App\Http\Requests\Api\ShoppingList\SupplierCreateRequest;
 use App\Http\Resources\ShoppingListResource;
 use App\Models\ShoppingList;
@@ -25,11 +26,11 @@ class ShoppingListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ConsumerCreateRequest $request
+     * @param ShoppingListCreateRequest $request
      *
      * @return JsonResponse
      */
-    public function create(ConsumerCreateRequest $request)
+    public function create(ShoppingListCreateRequest $request)
     {
         $shoppingList = ShoppingList::create($request->all());
         $shoppingList->save();

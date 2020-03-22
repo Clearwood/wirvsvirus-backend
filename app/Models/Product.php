@@ -48,7 +48,7 @@ class Product extends Model
 
     public function shoppingItems(): HasMany
     {
-        return $this->hasMany(ShoppingItem::class);
+        return $this->hasMany(ShoppingItem::class, 'shoppingItem_id');
     }
 
     public function shops(): BelongsToMany

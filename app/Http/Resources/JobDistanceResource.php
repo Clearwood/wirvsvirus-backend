@@ -5,8 +5,9 @@ namespace App\Http\Resources;
 use App\Models\Job;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JobResource extends BaseResource
+class JobDistanceResource extends BaseResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -28,6 +29,10 @@ class JobResource extends BaseResource
             'acceptedJobTime' => $this->acceptedJobTime,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'distance' => [
+                'distance' => $this->distance['distance'],
+                'duration'=> $this->distance['duration'],
+            ]
         ];
     }
 }

@@ -33,7 +33,7 @@ class ShoppingItem extends Model
 
     public function shoppingList()
     {
-        return $this->belongsTo(ShoppingList::class);
+        return $this->belongsTo(ShoppingList::class, 'shoppingList_id');
     }
 
     public function product()

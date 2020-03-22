@@ -4,6 +4,7 @@ namespace App\Http\Requests\Api\Job;
 
 use App\Http\Requests\Api\BaseRequest;
 use App\Models\Consumer;
+use App\Models\ShoppingList;
 
 class JobCreateRequest extends BaseRequest
 {
@@ -17,6 +18,7 @@ class JobCreateRequest extends BaseRequest
         return [
             'status' => 'in:pending,inProgress,done',
             'consumer_id' => 'required|exists:' . Consumer::class . ',id',
+            'shoppingList_id' => 'required|exists:' . ShoppingList::class . ',id',
         ];
     }
 }

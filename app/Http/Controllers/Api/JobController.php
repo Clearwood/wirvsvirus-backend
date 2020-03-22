@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Job\JobCreateRequest;
 use App\Http\Requests\Api\Job\JobUpdateRequest;
+use App\Http\Resources\JobDistanceResource;
 use App\Http\Resources\JobResource;
 use App\Models\Job;
+use App\services\JobSorter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -15,10 +17,17 @@ class JobController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('latitude') && $request->has('longitude')) {
+            $js = new JobSorter();
+            $sorted = $js->sortJobs($request->get('supplier_id'), Job::where('supplier_id', null)->get(), $request->get('latitude'), $request->get('longitude'));
+            return JobDistanceResource::collection($sorted);
+        }
         return JobResource::collection(Job::all());
     }
 

@@ -22,10 +22,11 @@ class UserCreateRequest extends BaseRequest
             'houseNumber' => 'required|string',
             'city' => 'required|string',
             'postCode' => 'required|integer',
-            'extraAddressInformation' => 'required|string',
+            'extraAddressInformation' => 'string',
             'healthStatus' => 'required|in:quarantine,sick,healthy',
             'isRiskGroup' => 'required|boolean',
             'password' => 'required|string',
+            'phoneNumber' => 'required|string',
         ];
     }
 }

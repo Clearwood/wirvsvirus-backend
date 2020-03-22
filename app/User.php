@@ -4,6 +4,8 @@ namespace App;
 
 use App\Models\Consumer;
 use App\Models\Supplier;
+use App\Models\UsesUuid;
+use App\services\DistanceService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -27,6 +29,7 @@ use Illuminate\Notifications\Notifiable;
  * @property        string  password
  * @property        float   latitude
  * @property        float   longitude
+ * @property        string  phoneNumber
  *
  * @property-read   Consumer    consumer
  * @property-read   Supplier    supplier
@@ -39,7 +42,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UsesUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -57,7 +60,8 @@ class User extends Authenticatable
         'postCode',
         'extraAddressInformation',
         'healthStatus',
-        'isRiskGroup'
+        'isRiskGroup',
+        'phoneNumber',
         //'password',
     ];
 
@@ -87,5 +91,20 @@ class User extends Authenticatable
     public function supplier(): HasOne
     {
         return $this->hasOne(Supplier::class);
+    }
+
+    public function getLatLong()
+    {
+        if ($this->wasChanged(['streetName', 'houseNumber', 'city', 'postcode']) || $this->wasRecentlyCreated) {
+            $ds = new DistanceService();
+            $res = $ds->address2Geo($this->getAddress());
+            $this->latitude = $res['json']['results'][0]['geometry']['location']['lat'];
+            $this->longitude = $res['json']['results'][0]['geometry']['location']['lng'];
+        }
+    }
+
+    public function getAddress()
+    {
+        return "{$this->streetName} {$this->houseNumber}, {$this->postCode} {$this->city}, Germany";
     }
 }

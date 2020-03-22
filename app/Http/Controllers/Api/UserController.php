@@ -24,6 +24,7 @@ class UserController extends Controller
     {
         $user = User::create($request->all());
         $user->password = Hash::make($request->input('password'));
+        $user->getLatLong();
         $user->save();
 
         return (new UserResource($user->refresh()))->response()->setStatusCode(201);
@@ -65,6 +66,7 @@ class UserController extends Controller
         if ($request->has('password')) {
             $user->password = Hash::make($request->input('password'));
         }
+        $user->getLatLong();
         $user->save();
         return new UserResource($user->refresh());
     }

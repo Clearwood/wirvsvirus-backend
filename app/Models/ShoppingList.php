@@ -42,7 +42,7 @@ class ShoppingList extends Model
 
     public function shoppingItems(): HasMany
     {
-        return $this->hasMany(ShoppingItem::class);
+        return $this->hasMany(ShoppingItem::class, 'shoppingList_id');
     }
 
 }

@@ -50,7 +50,7 @@ class Supplier extends Model
 
     public function shopFeedbacks(): HasMany
     {
-        return $this->hasMany(ShopFeedback::class);
+        return $this->hasMany(ShopFeedback::class, 'shoppingList_id');
     }
 
 }

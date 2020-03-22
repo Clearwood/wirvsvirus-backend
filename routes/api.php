@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::any('dist', [\App\Http\Controllers\Api\DistanceController::class, 'dist']);
 
 Route::prefix('users')->name('users.')->group(function () {

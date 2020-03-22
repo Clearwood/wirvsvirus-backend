@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use App\Models\ShopFeedback;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShopFeedbackResource extends JsonResource
+class ShopFeedbackResource extends BaseResource
 {
     /**
      * Transform the resource into an array.

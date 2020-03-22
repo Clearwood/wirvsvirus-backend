@@ -7,6 +7,7 @@ use App\Http\Requests\Api\Job\ShoppingItemCreateRequest;
 use App\Http\Requests\Api\Job\ShoppingItemUpdateRequest;
 use App\Http\Resources\ShoppingItemResource;
 use App\Models\ShoppingItem;
+use App\Models\ShoppingList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -32,13 +33,16 @@ class ShoppingItemController extends Controller
     public function create(ShoppingItemCreateRequest $request)
     {
         $shoppingItem = ShoppingItem::create($request->all());
+        $shoppingItem->shoppingList()->associate(ShoppingList::find($request->input('shoppingList_id')));
         $shoppingItem->save();
         $shoppingItem->refresh();
 
-        $shoppingItem->shoppingList->hasCooledProduct = false;
-        foreach ($shoppingItem->shoppingList->shoppingItems as $shoppingItem) {
+        /* @var ShoppingList $shoppingList */
+        $shoppingList = $shoppingItem->shoppingList;
+        $shoppingList->hasCooledProduct = false;
+        foreach ($shoppingList->shoppingItems as $shoppingItem) {
             if ($shoppingItem->product->needsCooling) {
-                $shoppingItem->shoppingList->hasCooledProduct = true;
+                $shoppingList->hasCooledProduct = true;
                 break;
             }
         }

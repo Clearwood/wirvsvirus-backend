@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property        int         paymentToSupplier
  * @property        Carbon      deliveryTime
  * @property        Carbon      acceptedJobTime
+ * @property        ShoppingList    shoppingList
+ * @property        string      shoppingList_id
  *
  * @property-read   Carbon      created_at
  * @property-read   Carbon      updated_at
@@ -36,6 +38,7 @@ class Job extends Model
         'status',
         'supplier_id',
         'consumer_id',
+        'shoppingList_id',
         'shop_id',
         'receipt',
         'paymentToShop',
@@ -57,6 +60,11 @@ class Job extends Model
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function shoppingList()
+    {
+        return $this->belongsTo(ShoppingList::class, 'shoppingList_id');
     }
 
 }
