@@ -26,10 +26,13 @@ class JobController extends Controller
     {
         if ($request->has('latitude') && $request->has('longitude')) {
             $js = new JobSorter();
-            $sorted = $js->sortJobs($request->get('supplier_id'), Job::where([
+            $sorted = $js->sortJobs($request->get('supplier_id'), Job::with(['shoppingList' => function ($query) use ($request) {
+                $query->where([
+                    ['shoppingBagsAmount', '<=', $request->get('shoppingBagsAmount') ?? 100],
+                    ['hasCooledProduct', '<=', $request->get('hasCooledProduct') ?? 1]
+                ]);
+            }])->where([
                 ['status', '=', 'pending'],
-                ['shoppingList.shoppingBagsAmount', '<=', $request->get('shoppingBagsAmount') ?? 100],
-                ['shoppingList.hasCooledProduct', '<=', $request->get('hasCooledProduct') ?? 1],
             ])->get(), $request->get('latitude'), $request->get('longitude'), $request->get('searchRadius'));
             return JobDistanceResource::collection($sorted);
         } else {
