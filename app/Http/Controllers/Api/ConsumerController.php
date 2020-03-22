@@ -8,16 +8,23 @@ use App\Http\Requests\Api\ShoppingList\ConsumerUpdateRequest;
 use App\Http\Resources\ConsumerResource;
 use App\Models\Consumer;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ConsumerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @param Request $request
+     *
+     * @return array|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('user_id')) {
+            $consumers = Consumer::where('user_id', $request->get('user_id'))->get();
+            return ConsumerResource::collection($consumers);
+        }
         return ConsumerResource::collection(Consumer::all());
     }
 

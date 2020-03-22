@@ -17,7 +17,7 @@ class ShoppingListCreateRequest extends BaseRequest
         return [
             'consumer_id' => 'required|exists:' . Consumer::class . ',id',
             'preferCheapProducts' => 'boolean',
-            'shopType' => 'required|string',
+            'shopType' => 'string',
             'shoppingBagsAmount' => 'required|integer',
         ];
     }

@@ -33,7 +33,7 @@ class UserController extends Controller
     {
         $user = User::where('email', $request->input('email'))->first();
         if ($user && Hash::check($request->input('password'), $user->password)) {
-            return new JsonResponse(['token' => $user->id]);
+            return new JsonResponse(['token' => $user->id, 'user' => new UserResource($user)]);
         } else {
             return new JsonResponse(['success' => false, 'error' => 'Incorrect email or password'], 403);
         }
